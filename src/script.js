@@ -117,16 +117,16 @@ const floor = createFloor(scene, texture, height, params);
 
 
 gui.add(params, 'floorWidth', 500, 5000).onChange((value) => {
-    floor.updateSize(value, params.floorHeight);  // Update floor size
+    floor.updateSize(value, params.floorHeight);  
 });
 
 gui.add(params, 'floorHeight', 500, 5000).onChange((value) => {
-    floor.updateSize(params.floorWidth, value);  // Update floor size
+    floor.updateSize(params.floorWidth, value); 
 });
 
 
 const board = new Board(scene, gui, params, material);
-const modelLoader = new ModelLoader(scene, gui);  // Pass the GUI here
+const modelLoader = new ModelLoader(scene, gui);  
 modelLoader.loadModels();
 
 const clock = new THREE.Clock();
