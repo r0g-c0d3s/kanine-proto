@@ -2,15 +2,15 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
-// import { textureLoad } from 'three/webgpu'
+
 
 //texture
 const loader=new THREE.TextureLoader()
 const height=loader.load('./texture/height.png')
 const texture=loader.load('./texture/mars-texture.png')
-// const aloha=loader.load('')
 
-// Debug
+
+
 const gui = new dat.GUI()
 
 // Canvas
@@ -67,9 +67,7 @@ window.addEventListener('resize', () =>
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
-/**
- * Camera
- */
+
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 0
@@ -101,16 +99,15 @@ const tick = () =>
 
     const elapsedTime = clock.getElapsedTime()
 
-    // Update objects
-   
 
-    // Update Orbital Controls
+
+    // Orbital Controls
     controls.update()
 
     // Render
     renderer.render(scene, camera)
 
-    // Call tick again on the next frame
+
     window.requestAnimationFrame(tick)
 }
 
