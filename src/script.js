@@ -3,13 +3,13 @@
 import * as THREE from 'three';
 import ModelLoader from './models.js';
 import { createOrbitControls } from './orbitalControls.js';
-import { GUI } from 'dat.gui'; // Import dat.GUI
+import { GUI } from 'dat.gui';
 import holographicVertexShader from './shaders/holographic/vertex.glsl';
 import holographicFragmentShader from './shaders/holographic/fragment.glsl';
-import { Board } from './board.js'; // Import the Board class
-import { createFloor } from './floor.js'; // Import the createFloor function
+import { Board } from './board.js'; 
+import { createFloor } from './floor.js'; 
 
-// Texture Loader with error handling
+
 const loader = new THREE.TextureLoader();
 const texturePath = './texture/gravel_road_diff_2k.png';
 const height = loader.load('./texture/height.png');
@@ -25,9 +25,7 @@ const texture = loader.load(
     }
 );
 
-/**
- * Base setup
- */
+
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#000');
 
@@ -59,7 +57,7 @@ const params = {
     floorHeight: 1000, // Default floor height
 };
 
-// Update GUI for lighting
+// GUI for lighting
 const ambientLight = new THREE.AmbientLight(0xffffff, params.ambientLightIntensity);
 scene.add(ambientLight);
 gui.add(params, 'ambientLightIntensity', 0, 5).onChange((value) => {
@@ -74,7 +72,7 @@ gui.add(params, 'directionalLightIntensity', 0, 5).onChange((value) => {
     directionalLight.intensity = value;
 });
 
-// Custom Shader Material for Holographic Effect
+// Holographic Effect
 const materialParameters = { color: params.hologramColor };
 const material = new THREE.ShaderMaterial({
     vertexShader: holographicVertexShader,
@@ -94,7 +92,7 @@ gui.addColor(params, 'hologramColor').onChange((value) => {
     material.uniforms.uColor.value.set(value);
 });
 
-// Add stars to the background
+// stars background
 function addStars() {
     const starGeometry = new THREE.BufferGeometry();
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5 });
@@ -114,12 +112,10 @@ function addStars() {
 }
 addStars();
 
-/**
- * Create the terrain (floor)
- */
+
 const floor = createFloor(scene, texture, height, params);
 
-// GUI control for floor size (width and height)
+
 gui.add(params, 'floorWidth', 500, 5000).onChange((value) => {
     floor.updateSize(value, params.floorHeight);  // Update floor size
 });
@@ -128,16 +124,11 @@ gui.add(params, 'floorHeight', 500, 5000).onChange((value) => {
     floor.updateSize(params.floorWidth, value);  // Update floor size
 });
 
-/**
- * 3D Model Loading and Updates
- */
+
 const board = new Board(scene, gui, params, material);
 const modelLoader = new ModelLoader(scene, gui);  // Pass the GUI here
 modelLoader.loadModels();
 
-/**
- * Animation Loop
- */
 const clock = new THREE.Clock();
 function animate() {
     const elapsedTime = clock.getElapsedTime();
