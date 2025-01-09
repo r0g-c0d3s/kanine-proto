@@ -4,15 +4,14 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 class ModelLoader {
     constructor(scene, gui) {
         this.scene = scene;
-        this.gui = gui; // Pass GUI instance
+        this.gui = gui; 
         this.models = [];
 
-        // Initialize GLTFLoader
+       
         this.loader = new GLTFLoader();
 
-        // Initialize DracoLoader and set decoder path
         const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('./static/models'); // Update this path to your Draco files
+        dracoLoader.setDecoderPath('./static/models');
         this.loader.setDRACOLoader(dracoLoader);
 
         this.modelPaths = [
@@ -97,40 +96,40 @@ class ModelLoader {
                     model.scale.set(0.1, 0.1, 0.1);
                     model.name = this.modelNames[index];
                     if (this.modelNames[index] === 'canyon') {
-                        model.scale.set(4, 4, 4); // Adjust the scale values as needed
+                        model.scale.set(4, 4, 4); 
                     } else {
                         model.scale.set(0.1, 0.1, 0.1);
                     }
 
                     if (this.modelNames[index] === 'rover_x') {
-                        model.scale.set(2.5, 2.5, 2.5); // Increase the scale
+                        model.scale.set(2.5, 2.5, 2.5); 
                     }
                     if (this.modelNames[index] === 'coin') {
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4); 
                     }
                     if (this.modelNames[index] === 'crater') {
-                        model.scale.set(2, 2, 2); // Increase the scale
+                        model.scale.set(2, 2, 2); 
                     }
                     if (this.modelNames[index] === 'enNode') {
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4);
                     }
                     if (this.modelNames[index] === 'enOrb') {
-                        model.scale.set(6, 6, 6); // Increase the scale
+                        model.scale.set(6, 6, 6); 
                     }
                     if (this.modelNames[index] === 'enslot') {  
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4); 
                     }
                     if (this.modelNames[index] === 'glowslot') {
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4); 
                     }
                     if (this.modelNames[index] === 'lander') {
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4); 
                     }
                     if (this.modelNames[index] === 'outcorp') {
-                        model.scale.set(4, 4, 4); // Increase the scale
+                        model.scale.set(4, 4, 4);
                     }
                     if (this.modelNames[index] === 'Drone') {
-                        model.scale.set(.5, .5, .5); // Increase the scale
+                        model.scale.set(.5, .5, .5); 
                     }
 
                     
@@ -162,11 +161,11 @@ class ModelLoader {
 
                     this.setShadowProperties(model);
 
-                    // Add model to the scene
+                 
                     this.scene.add(model);
                     this.models.push(model);
 
-                    // Add position and rotation controls to the GUI for each model
+                   
                     this.addPositionAndRotationControlsToGUI(model);
                 },
                 undefined,
@@ -196,7 +195,7 @@ class ModelLoader {
 
     addPositionAndRotationControlsToGUI(model) {
         const modelPosition = model.position;
-        const modelRotation = model.rotation; // Rotation of the model
+        const modelRotation = model.rotation; 
         const folder = this.gui.addFolder(`${model.name}`);
 
         // Position controls
@@ -211,7 +210,7 @@ class ModelLoader {
             model.position.z = value;
         });
 
-        // Rotation controls (in radians)
+        // Rotation controls 
         const rotationFolder = folder.addFolder('Rotation');
         rotationFolder.add(modelRotation, 'x', 0, Math.PI * 2).onChange((value) => {
             model.rotation.x = value;
