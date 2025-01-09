@@ -44,13 +44,13 @@ export class Board {
 
                 // Position the text inside the hologram
                 textMesh.position.set(-1.5, 4, 0); // Adjust based on your model
-                // Add the text to the board (hologram)
+                // Add text to the board (hologram)
                 this.board.add(textMesh);
             });
 
             this.scene.add(this.board);
 
-            // Update GUI to control the board position with new names
+            // Update GUI to control the board position
             this.gui.add(this.params.boardPosition, 'x', -10, 10).name('Board Position X').onChange(() => {
                 this.board.position.x = this.params.boardPosition.x;
             });
